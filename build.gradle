@@ -1,0 +1,42 @@
+buildscript {
+    ext {
+        kotlinJvmVersion = "1.7.10"
+        kotlinJvmTargetVersion = "1.8"
+        iTextVersion = "5.1.2"
+        poiVersion = "5.2.2"
+    }
+}
+
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "$kotlinJvmVersion"
+    id "application"
+}
+
+group = "com.tgdg"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.itextpdf:itextpdf:$iTextVersion"
+    implementation "org.apache.poi:poi-ooxml:$poiVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "$kotlinJvmTargetVersion"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "$kotlinJvmTargetVersion"
+}
+
+application {
+    mainClassName = "MainKt"
+}
